@@ -1,0 +1,21 @@
+{
+    "name": "BF2Tools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c189dd3e676567f43a00e28b954c5a6c",
+        "GUID:1b7836a051ae84244a49115665f8b906",
+        "GUID:e4d2665ad07bd224cbc1a3ba718aecdc"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "tvOS"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

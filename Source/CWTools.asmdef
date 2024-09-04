@@ -1,0 +1,23 @@
+{
+    "name": "CWTools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:136804ef818afc841a8529cab1f80af2",
+        "GUID:79525ae8da628de4dbc27f7345e0c503",
+        "GUID:8c4dd21966739024fbd72155091d199e",
+        "GUID:86c9d8e67265f41469be06142c397d17",
+        "GUID:77ccaf49895b0d64e87cd4b4faf83c49",
+        "GUID:d60799ab2a985554ea1a39cd38695018",
+        "GUID:e4d2665ad07bd224cbc1a3ba718aecdc",
+        "GUID:1b7836a051ae84244a49115665f8b906"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
