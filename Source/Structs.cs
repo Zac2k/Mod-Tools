@@ -74,7 +74,7 @@ public class CWMap
     [Key(14)] public Bounds PlayableArea = new Bounds(Vector3.zero, new Vector3(10, 10, 10));
     [Key(15)] public Vector3[] SpawnPoints;
     [Key(16)] public Vector3[] TeamBasePoints;
-    [Key(17)] public Vector3[] TeamFlasgPoints;
+    [Key(17)] public Vector3[] TeamFlagsPoints;
     [Key(18)] public Vector3[] WeaponSpawnPoints;
     [Key(19)] public float MiniMapScale;
     [Key(20)] public Vector3[] BotsReferencePoints;
@@ -130,7 +130,7 @@ public class CWMap
         if (MonoBehaviour.FindObjectOfType<SurfaceManager>()) SurfaceManager = new CWSurfaceManager(MonoBehaviour.FindObjectOfType<SurfaceManager>());
 
         TeamBasePoints = new Vector3[2]; TeamBasePoints[0] = MMM.Team1.BasePosition; TeamBasePoints[1] = MMM.Team2.BasePosition;
-        TeamFlasgPoints = new Vector3[2]; TeamFlasgPoints[0] = MMM.Team1.FlagPosition; TeamFlasgPoints[1] = MMM.Team2.FlagPosition;
+        TeamFlagsPoints = new Vector3[2]; TeamFlagsPoints[0] = MMM.Team1.FlagPosition; TeamFlagsPoints[1] = MMM.Team2.FlagPosition;
 
         foreach (GameObject GO in MMM.ConquestOnlyObjects) { if (!GO || !GO.activeInHierarchy) continue; ConquestOnlyObjects.Add(GetTransformChecksum(GO.transform)); }
         foreach (ModMapManager.ConquestPoint CP in MMM.ConquestPoints) { ConquestPoints.Add(CP.Position); }
@@ -158,7 +158,7 @@ public class CWMap
         MMM.WaterHeight = WaterHeight;
 
         MMM.Team1.BasePosition = TeamBasePoints[0]; MMM.Team2.BasePosition = TeamBasePoints[1];
-        MMM.Team1.FlagPosition = TeamFlasgPoints[0]; MMM.Team2.FlagPosition = TeamFlasgPoints[1];
+        MMM.Team1.FlagPosition = TeamFlagsPoints[0]; MMM.Team2.FlagPosition = TeamFlagsPoints[1];
 
         MMM.ConquestPoints.Clear();
         MMM.ConquestOnlyObjects.Clear();
