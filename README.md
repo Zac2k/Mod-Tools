@@ -1,17 +1,21 @@
 # Mod Tools
 
 ## Description
-Project made for users who want to create mods for Carnage Wars. 😊
+The **Mod Tools** project is designed for users who want to create mods for **Carnage Wars**. 😊
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [License](#license)
-5. [Acknowledgements](#acknowledgements)
+   - [Setting Up a Map](#setting-up-a-map)
+   - [Configuring the Map for Export](#configuring-the-map-for-export)
+   - [Exportable Components](#exportable-components)
+4. [Notes](#notes)
+5. [License](#license)
+6. [Acknowledgements](#acknowledgements)
 
 ## Prerequisites
-Before installing to your new Unity project, make sure you have installed the following packages from the Package Manager to avoid compiler issues:
+Before installing the Mod Tools in your Unity project, ensure the following packages are installed from the Package Manager to avoid compiler issues:
 - `com.unity.ai.navigation`
 - `com.unity.nuget.newtonsoft-json`
 - `com.unity.postprocessing`
@@ -48,30 +52,58 @@ After installing the Unity package, follow these steps to set up and export your
    
    ![Open General](Documentation/Images/Open_General.jpg)
 
-2. **Edit Playable Area:**
-   - Click the "Edit Area" button to enter Area Edit Mode. Use this tool to set the area on your map that players are allowed to access. Please set this area as small as possible to avoid precision issues.
+   a. **Edit Playable Area:**
+      - Click the "Edit Area" button to enter Area Edit Mode. Use this tool to set the area on your map that players are allowed to access. Please set this area as small as possible to avoid precision issues.
+      
+      ![Setup Playable Area](Documentation/Images/SetupPlayableArea.gif)
+
+      **Note:** Placing points requires the stage colliders to be set up.
+
+   b. **Set Spawn Points:**
+      - Select the "Edit SpawnPoints" button to enter SpawnPoints Mode. Left-click anywhere in the scene to place a spawn point. Right-click a spawn point to remove it.
+      
+      ![Place Spawn Points](Documentation/Images/PlaceSpawnPoints.gif)
+
+   c. **Set Weapon Spawn Points:**
+      - Select the "Edit WeaponsSpawnPoints" button to enter WeaponsSpawnPoints Mode. Left-click anywhere in the scene to place a weapon spawn point. Right-click a spawn point to remove it. Weapon spawns are crucial for Battle Royale mode.
+      
+      ![Place Weapon Spawn Points](Documentation/Images/PlaceWeaponSpawnPoints.gif)
+
+   d. **Base Setup:**
+      - To set up a team base point, click the "Set Team Base" button and then click the area where you want the team's base to be. Players will automatically spawn close to this point in modes that require them to spawn at their base.
+      - To set up a team flag point, click the "Set Team Flag" button and then click the area where you want the team's flag to be.
+
+      **Note:** You'll need to set up the base and flag for both teams to avoid issues.
+      
+      ![Base Setup](Documentation/Images/BaseSetup.gif)
+
+   - When you are done with the general setup, you can minimize the foldout to make the scene look cleaner as you move to the next section.
+
+2. **Bots Setup:** 
+   - Expand the Bots Settings.
+   - Click the "Edit BotsReferencePoints" button to edit the reference points for bots. These points are crucial for bots' navigation. Place them around corners, near windows, and in areas that bots can access. Place them only on floors and other reachable areas.
    
-   ![Setup Playable Area](Documentation/Images/SetupPlayableArea.gif)
+   ![Bot Reference Setup](Documentation/Images/BotReferenceSetup.gif)
 
-   **Note:** Placing points requires the stage colliders to be set up.
-
-3. **Set Spawn Points:**
-   - Select the "Edit SpawnPoints" button to enter SpawnPoints Mode. Left-click anywhere in the scene to place a spawn point. Right-click a spawn point to remove it.
+3. **Conquest Setup:** 
+   - Expand the Conquest Settings to reveal the Conquest Setup. Enable Conquest by checking the "Enable Conquest" checkbox.
    
-   ![Place Spawn Points](Documentation/Images/PlaceSpawnPoints.gif)
+   ![Enable Conquest](Documentation/Images/EnableConquest.jpg)
 
-4. **Set Weapon Spawn Points:**
-   - Select the "Edit WeaponsSpawnPoints" button to enter WeaponsSpawnPoints Mode. Left-click anywhere in the scene to place a weapon spawn point. Right-click a spawn point to remove it. Weapon spawns are crucial for Battle Royale mode.
+   - The Conquest Radius slider controls the size of Conquest Objectives.
+   - The Respawn Radius slider controls the radius within which the Conquest Objective will collect respawn points. This should be considerably larger than the Conquest Radius. Ensure respawn points are placed within the radius of each objective you add.
+   - The "Conquest Only Objects" list contains stage objects that you want to load only in Conquest Mode. Add any object from the scene to the list, and they will be disabled in other modes.
+   - To add a new Conquest Objective, click the "+" button.
    
-   ![Place Weapon Spawn Points](Documentation/Images/PlaceWeaponSpawnPoints.gif)
+   ![Add Conquest Objective](Documentation/Images/AddConquestObjective.jpg)
 
-5. **Base Setup:**
-   - To set up a team base point, click the "Set Team Base" button and then click the area where you want the team's base to be. Players will automatically spawn close to this point in modes that require them to spawn at their base.
-   - To set up a team flag point, click the "Set Team Flag" button and then click the area where you want the team's flag to be.
-
-   **Note:** You'll need to set up the base and flag for both teams to avoid issues.
+   - After adding the Conquest Objective, click the ![Move Button](Documentation/Images/MoveButton.jpg) button and tap where you want in the stage to move the objective to that point.
    
-   ![Base Setup](Documentation/Images/BaseSetup.gif)
+   ![Place Conquest Objective](Documentation/Images/PlaceConquestObjective.gif)
+
+   - To remove a Conquest Objective, click the "-" button on the top right of the Objective Setup.
+   
+   ![Remove Conquest Objective](Documentation/Images/RemoveConquestObjective.jpg)
 
 ### Exportable Components
 
@@ -125,12 +157,12 @@ The exporter can handle the following components, if available in your scene:
 16. **Other Components:**
     - Exports additional components, such as post-processing volumes, that might be specific to your scene.
 
-### Notes
+## Notes
 - Ensure all required components are set up and correctly configured before exporting the map.
 - The exporter currently supports only the local NavMesh surface. Other NavMesh surfaces will be supported in future updates.
 
 ## License
-(This section will include information about the project's license.)
+(Include information about the project's license here.)
 
 ## Acknowledgements
-(Credits and acknowledgements will go here.)
+(Include credits and acknowledgements here.)
