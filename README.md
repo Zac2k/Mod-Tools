@@ -107,23 +107,53 @@ After installing the Unity package, follow these steps to set up and export your
 4. **Patrol Setup:** 
    - Expand the Patrol Settings to reveal the Patrol Setup. Enable Patrol by checking the "Enable Patrol" checkbox.
    
-   ![Enable Conquest](Documentation/Images/EnablePatrol.jpg)
+   ![Enable Patrol](Documentation/Images/EnablePatrol.jpg)
 
    - The "Patrol Only Objects" list contains stage objects that you want to load only in Patrol Mode. Add any object from the scene to the list, and they will be disabled in other modes.
 
    - To add a new Patrol Objective, click the ![Add Button](Documentation/Images/AddButton.jpg) button.
 
-   - To Edit a Patrol Objective, click the ![Edit Points Button](Documentation/Images/EditPointsButton.jpg) button To Enter The Points Edit Mode, Now Left Click Anywhere On The Map To Place A Marker For The Patrol Point, To Remove A Marker Simply Right Click On It, The white Line Wrapping The Markers Represents the main area used for computation.
+   - To Edit a Patrol Objective, click the ![Edit Points Button](Documentation/Images/EditPointsButton.jpg) button. To enter the Points Edit Mode, left-click anywhere on the map to place a marker for the Patrol Point. To remove a marker, right-click on it. The white line wrapping the markers represents the main area used for computation.
 
    ![Place Patrol Objective](Documentation/Images/PlacePatrolObjective.gif)
 
 5. **Sabotage Setup:** 
    - Expand the Sabotage Settings.
-   - Click the "Enable Sabotage" Checkbox.
-   - You Can Add Sabotage Points By Clicking The ![Add Button](Documentation/Images/AddButton.jpg) Button.
-   - After Adding, You Can Position The Points By Clicking ![Move Button](Documentation/Images/MoveButton.jpg) And Clicking The Area Of The Scene You Want To Place It.
+   - Click the "Enable Sabotage" checkbox.
+   - You can add Sabotage Points by clicking the ![Add Button](Documentation/Images/AddButton.jpg) button.
+   - After adding, you can position the points by clicking the ![Move Button](Documentation/Images/MoveButton.jpg) and clicking the area of the scene where you want to place it.
    
-   ![Bot Reference Setup](Documentation/Images/SabotageSetup.gif)
+   ![Sabotage Setup](Documentation/Images/SabotageSetup.gif)
+
+6. **Export Setup:** 
+   - Expand the Export Settings.
+   
+   ![Export Settings](Documentation/Images/ExportSettings.jpg)
+
+   - **Build Target:** This is the target platform that asset bundles will be built for. Please select only Android or Windows for now.
+   - **Info:** These settings control how the map is set up.
+     - **Name:** The name of the map.
+     - **Description:** Short description of the map.
+     - **Vehicles:** Disabling this will force vehicles to be off in the map.
+     - **Traps:** Ignore this for now.
+     - **Supply Crate:** Controls if the supply pilot should come and drop the supply crate.
+     - **Size:** Map size (0: small, 1: medium, 2: large).
+     - **Icon:** This is the icon of the map. It is very important to display the loading screen.
+     - **Map Icon:** Not necessary.
+     - **Has Safe Zone:** This option is very useful for modes like Sabotage on large maps.
+     - **Show in MP:** This will make the map show in custom MP modes.
+     - **Show in BR:** This will make the map show in custom BR modes.
+   - **Platforms:** Ignore this for now.
+   - **Compress Mesh UVs:** This option will cause the mesh UVs to be compressed and reduce map disk size.
+   - **Compress Mesh Vertices:** This will compress the mesh geometry and reduce disk space.
+   - **Convert Shaders:** This is very important if you plan to atlas your map with the Pack Textures option. This will convert most of the map's shaders to a shader in ZicZac/, which will be good for performance as more unnecessary shaders won't be loaded into RAM and will also allow changing of Shader Quality.
+   - **Pack Textures:** This will pack the textures of the map into atlases. This will only pack converted materials or materials using shaders under ZicZac/ or GLTF.
+   - **Atlas Size:** The size of each atlas. Please don't set this higher than 2048 if you are not using a very powerful GPU and lots of RAM.
+   - **Max Texture Size:** This is the max size of each texture in the atlas. Must be a power of 2 (e.g., 256, 512, 1024, 2048, 4096).
+   - **Mesh Compression:** Set this to the desired level. The highest level will make the meshes much smaller but might cause minor visual artifacts.
+   - **Build:** Click this button to start the export process.
+   
+   ![Export Button](Documentation/Images/ExportButton.jpg)
 
 ### Exportable Components
 
@@ -186,3 +216,4 @@ The exporter can handle the following components, if available in your scene:
 
 ## Acknowledgements
 (Include credits and acknowledgements here.)
+
