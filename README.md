@@ -151,9 +151,12 @@ After installing the Unity package, follow these steps to set up and export your
    - **Atlas Size:** The size of each atlas. Please don't set this higher than 2048 if you are not using a very powerful GPU and lots of RAM.
    - **Max Texture Size:** This is the max size of each texture in the atlas. Must be a power of 2 (e.g., 256, 512, 1024, 2048, 4096).
    - **Mesh Compression:** Set this to the desired level. The highest level will make the meshes much smaller but might cause minor visual artifacts.
-   - **Build:** Click this button to start the export process.
-   
-   ![Export Button](Documentation/Images/ExportButton.jpg)
+   - **Build:** 
+      - When You Are Done With All Settings And You Are Sure Your Map Is Ready, Click The Build Map Button, This Might Take A While To Build The Map, WHen The Map Is Done Building It Will Open The Folder Containing The Exported Map And You Can Place The Map On Your Device And Install It To Test.
+
+   You Can Load An Exported Map In The Editor To See How It WIll Look In-Game.
+
+   Warning : Loading A Map From The ModMapManager In The Editor Is A Destructive Process And Will Replace Some Of Your Scene Settings So Please Load Mods On Empty Scenes That Dont Contain Any Important Settings.
 
 ### Exportable Components
 
