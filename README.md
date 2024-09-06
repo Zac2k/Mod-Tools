@@ -20,7 +20,7 @@ Before installing the Mod Tools in your Unity project, ensure the following pack
 - `com.unity.postprocessing`
 
 ## Installation
-To install the project, download the latest version from the [Releases](#) section.
+To install the project, download the latest unitypackage from the [Releases](https://github.com/Zac2k/Mod-Tools/releases/tag/Release) section.
 
 ## Usage
 
@@ -156,7 +156,7 @@ After installing the Unity package, follow these steps to set up and export your
 
    You Can Load An Exported Map In The Editor To See How It WIll Look In-Game.
 
-   Warning : Loading A Map From The ModMapManager In The Editor Is A Destructive Process And Will Replace Some Of Your Scene Settings So Please Load Mods On Empty Scenes That Dont Contain Any Important Settings.
+   **Warning** : Loading A Map From The ModMapManager In The Editor Is A Destructive Process And Will Replace Some Of Your Scene Settings So Please Load Mods On Empty Scenes That Dont Contain Any Important Settings.
 
 ### Exportable Components
 
@@ -215,8 +215,25 @@ The exporter can handle the following components, if available in your scene:
 - The exporter currently supports only the local NavMesh surface. Other NavMesh surfaces will be supported in future updates.
 
 ## License
-(Include information about the project's license here.)
+MIT License
 
-## Acknowledgements
-(Include credits and acknowledgements here.)
+Copyright (c) 2024 ZicZac
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
