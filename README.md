@@ -1,6 +1,5 @@
 # Mod Tools
 
-## Description
 The **Mod Tools** project is designed for users who want to create mods for **Carnage Wars**. 😊
 
 ## Table of Contents
@@ -104,6 +103,27 @@ After installing the Unity package, follow these steps to set up and export your
    - To remove a Conquest Objective, click the "-" button on the top right of the Objective Setup.
    
    ![Remove Conquest Objective](Documentation/Images/RemoveConquestObjective.jpg)
+
+4. **Patrol Setup:** 
+   - Expand the Patrol Settings to reveal the Patrol Setup. Enable Patrol by checking the "Enable Patrol" checkbox.
+   
+   ![Enable Conquest](Documentation/Images/EnablePatrol.jpg)
+
+   - The "Patrol Only Objects" list contains stage objects that you want to load only in Patrol Mode. Add any object from the scene to the list, and they will be disabled in other modes.
+
+   - To add a new Patrol Objective, click the ![Add Button](Documentation/Images/AddButton.jpg) button.
+
+   - To Edit a Patrol Objective, click the ![Edit Points Button](Documentation/Images/EditPointsButton.jpg) button To Enter The Points Edit Mode, Now Left Click Anywhere On The Map To Place A Marker For The Patrol Point, To Remove A Marker Simply Right Click On It, The white Line Wrapping The Markers Represents the main area used for computation.
+
+   ![Place Patrol Objective](Documentation/Images/PlacePatrolObjective.gif)
+
+5. **Sabotage Setup:** 
+   - Expand the Sabotage Settings.
+   - Click the "Enable Sabotage" Checkbox.
+   - You Can Add Sabotage Points By Clicking The ![Add Button](Documentation/Images/AddButton.jpg) Button.
+   - After Adding, You Can Position The Points By Clicking ![Move Button](Documentation/Images/MoveButton.jpg) And Clicking The Area Of The Scene You Want To Place It.
+   
+   ![Bot Reference Setup](Documentation/Images/SabotageSetup.gif)
 
 ### Exportable Components
 

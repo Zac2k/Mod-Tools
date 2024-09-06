@@ -107,7 +107,7 @@ public class ModMapManagerEditor : Editor
         GUI.skin.button.fontStyle = FontStyle.Bold;
         if (GUILayout.Button("Open Documentation"))
         {
-            Application.OpenURL("");
+            Application.OpenURL("https://github.com/Zac2k/Mod-Tools");
         }
         GUI.skin.button.fontStyle = FontStyle.Normal;
         GUI.backgroundColor = Color.white;
