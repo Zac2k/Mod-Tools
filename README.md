@@ -14,13 +14,24 @@ The **Mod Tools** project is designed for users who want to create mods for **Ca
 6. [Acknowledgements](#acknowledgements)
 
 ## Prerequisites
-Before installing the Mod Tools in your Unity project, ensure the following packages are installed from the Package Manager to avoid compiler issues:
-- `com.unity.ai.navigation`
-- `com.unity.nuget.newtonsoft-json`
-- `com.unity.postprocessing`
+
+### 1. Set Your Project to .NET Framework
+1. Open Unity and navigate to **Edit** > **Project Settings**.
+2. In the Project Settings window, select **Player** from the left menu.
+3. In the **Other Settings** section, scroll down to find **API Compatibility Level**.
+4. Change the API Compatibility Level from **.NET Standard 2.1** to **.NET Framework**.
+   
+   ![Switch to .NET Framework](Documentation/Images/SwitchToNetFramework.gif)
+
+### 2. Set Your Platform to Android (Optional, for Android Builds)
+1. Go to **File** > **Build Settings**.
+2. Select **Android** and click on **Switch Platform**.
+3. If Android is not available, install Android Support via Unity Hub or download it for your specific Unity version from the web. You do not need to install Android SDK, NDK, or JDK.
+   
+   ![Switch to Android](Documentation/Images/SwitchToAndroid.gif)
 
 ## Installation
-To install the project, download the latest unitypackage from the [Releases](https://github.com/Zac2k/Mod-Tools/releases/tag/Release) section.
+To install the project, download the latest unitypackage from the [Releases](https://github.com/Zac2k/Mod-Tools/releases/tag/Release) section and import to your project.
 
 ## Usage
 
