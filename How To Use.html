@@ -1,0 +1,298 @@
+<h1 id="mod-tools">Mod Tools</h1>
+<p>The <strong>Mod Tools</strong> project is designed for users who want to create mods for <strong>Carnage Wars</strong>. 😊</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#setting-up-a-map">Setting Up a Map</a></li>
+<li><a href="#configuring-the-map-for-export">Configuring the Map for Export</a></li>
+<li><a href="#exportable-components">Exportable Components</a></li>
+</ul>
+</li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="1-set-your-project-to-net-framework">1. Set Your Project to .NET Framework</h3>
+<ol>
+<li>Open Unity and navigate to <strong>Edit</strong> &gt; <strong>Project Settings</strong>.</li>
+<li>In the Project Settings window, select <strong>Player</strong> from the left menu.</li>
+<li>In the <strong>Other Settings</strong> section, scroll down to find <strong>API Compatibility Level</strong>.</li>
+<li><p>Change the API Compatibility Level from <strong>.NET Standard 2.1</strong> to <strong>.NET Framework</strong>.</p>
+<p><img src="Documentation/Images/SwitchToNetFramework.gif" alt="Switch to .NET Framework"></p>
+</li>
+</ol>
+<h3 id="2-set-your-platform-to-android-optional-for-android-builds-">2. Set Your Platform to Android (Optional, for Android Builds)</h3>
+<ol>
+<li>Go to <strong>File</strong> &gt; <strong>Build Settings</strong>.</li>
+<li>Select <strong>Android</strong> and click on <strong>Switch Platform</strong>.</li>
+<li><p>If Android is not available, install Android Support via Unity Hub or download it for your specific Unity version from the web. You do not need to install Android SDK, NDK, or JDK.</p>
+<p><img src="Documentation/Images/SwitchToAndroid.gif" alt="Switch to Android"></p>
+</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>To install the project, download the latest unitypackage from the <a href="https://github.com/Zac2k/Mod-Tools/releases/tag/Release">Releases</a> section and import to your project.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="setting-up-a-map">Setting Up a Map</h3>
+<p>After installing the Unity package, follow these steps to set up and export your map:</p>
+<ol>
+<li><p><strong>Open or Create a Scene:</strong></p>
+<ul>
+<li>Open the scene with your map, or create a new scene and build the map you want to export.</li>
+</ul>
+</li>
+<li><p><strong>Ensure Proper Collider Setup:</strong></p>
+<ul>
+<li>Make sure your map has all necessary colliders set up correctly.</li>
+</ul>
+</li>
+<li><p><strong>Add the ModMapManager Prefab:</strong></p>
+<ul>
+<li>Go to the <code>Prefabs</code> folder under <code>source/Prefabs</code> and drag the <code>ModMapManager</code> prefab into your scene.</li>
+</ul>
+<p><img src="Documentation/Images/Drag_And_Drop_Prefab_On_Scene.jpg" alt="Drag and Drop Prefab"></p>
+</li>
+<li><p><strong>Access Map Tools:</strong></p>
+<ul>
+<li>Select the <code>ModMapManager</code> in the Hierarchy. You should see the Map Tools in the Inspector panel.</li>
+</ul>
+<p><img src="Documentation/Images/Preview_MapTools.jpg" alt="Preview Map Tools"></p>
+</li>
+</ol>
+<h3 id="configuring-the-map-for-export">Configuring the Map for Export</h3>
+<ol>
+<li><p><strong>General Setup:</strong></p>
+<ul>
+<li>Expand the &quot;General&quot; section by clicking the arrow next to it.</li>
+</ul>
+<p><img src="Documentation/Images/Open_General.jpg" alt="Open General"></p>
+<p>a. <strong>Edit Playable Area:</strong></p>
+<ul>
+<li><p>Click the &quot;Edit Area&quot; button to enter Area Edit Mode. Use this tool to set the area on your map that players are allowed to access. Please set this area as small as possible to avoid precision issues.</p>
+<p><img src="Documentation/Images/SetupPlayableArea.gif" alt="Setup Playable Area"></p>
+<p><strong>Note:</strong> Placing points requires the stage colliders to be set up.</p>
+</li>
+</ul>
+<p>b. <strong>Set Spawn Points:</strong></p>
+<ul>
+<li><p>Select the &quot;Edit SpawnPoints&quot; button to enter SpawnPoints Mode. Left-click anywhere in the scene to place a spawn point. Right-click a spawn point to remove it.</p>
+<p><img src="Documentation/Images/PlaceSpawnPoints.gif" alt="Place Spawn Points"></p>
+</li>
+</ul>
+<p>c. <strong>Set Weapon Spawn Points:</strong></p>
+<ul>
+<li><p>Select the &quot;Edit WeaponsSpawnPoints&quot; button to enter WeaponsSpawnPoints Mode. Left-click anywhere in the scene to place a weapon spawn point. Right-click a spawn point to remove it. Weapon spawns are crucial for Battle Royale mode.</p>
+<p><img src="Documentation/Images/PlaceWeaponSpawnPoints.gif" alt="Place Weapon Spawn Points"></p>
+</li>
+</ul>
+<p>d. <strong>Base Setup:</strong></p>
+<ul>
+<li>To set up a team base point, click the &quot;Set Team Base&quot; button and then click the area where you want the team&#39;s base to be. Players will automatically spawn close to this point in modes that require them to spawn at their base.</li>
+<li><p>To set up a team flag point, click the &quot;Set Team Flag&quot; button and then click the area where you want the team&#39;s flag to be.</p>
+<p><strong>Note:</strong> You&#39;ll need to set up the base and flag for both teams to avoid issues.</p>
+<p><img src="Documentation/Images/BaseSetup.gif" alt="Base Setup"></p>
+</li>
+</ul>
+<ul>
+<li>When you are done with the general setup, you can minimize the foldout to make the scene look cleaner as you move to the next section.</li>
+</ul>
+</li>
+<li><p><strong>Bots Setup:</strong> </p>
+<ul>
+<li>Expand the Bots Settings.</li>
+<li>Click the &quot;Edit BotsReferencePoints&quot; button to edit the reference points for bots. These points are crucial for bots&#39; navigation. Place them around corners, near windows, and in areas that bots can access. Place them only on floors and other reachable areas.</li>
+</ul>
+<p><img src="Documentation/Images/BotReferenceSetup.gif" alt="Bot Reference Setup"></p>
+</li>
+<li><p><strong>Conquest Setup:</strong> </p>
+<ul>
+<li>Expand the Conquest Settings to reveal the Conquest Setup. Enable Conquest by checking the &quot;Enable Conquest&quot; checkbox.</li>
+</ul>
+<p><img src="Documentation/Images/EnableConquest.jpg" alt="Enable Conquest"></p>
+<ul>
+<li>The Conquest Radius slider controls the size of Conquest Objectives.</li>
+<li>The Respawn Radius slider controls the radius within which the Conquest Objective will collect respawn points. This should be considerably larger than the Conquest Radius. Ensure respawn points are placed within the radius of each objective you add.</li>
+<li>The &quot;Conquest Only Objects&quot; list contains stage objects that you want to load only in Conquest Mode. Add any object from the scene to the list, and they will be disabled in other modes.</li>
+<li>To add a new Conquest Objective, click the &quot;+&quot; button.</li>
+</ul>
+<p><img src="Documentation/Images/AddConquestObjective.jpg" alt="Add Conquest Objective"></p>
+<ul>
+<li>After adding the Conquest Objective, click the <img src="Documentation/Images/MoveButton.jpg" alt="Move Button"> button and tap where you want in the stage to move the objective to that point.</li>
+</ul>
+<p><img src="Documentation/Images/PlaceConquestObjective.gif" alt="Place Conquest Objective"></p>
+<ul>
+<li>To remove a Conquest Objective, click the &quot;-&quot; button on the top right of the Objective Setup.</li>
+</ul>
+<p><img src="Documentation/Images/RemoveConquestObjective.jpg" alt="Remove Conquest Objective"></p>
+</li>
+<li><p><strong>Patrol Setup:</strong> </p>
+<ul>
+<li>Expand the Patrol Settings to reveal the Patrol Setup. Enable Patrol by checking the &quot;Enable Patrol&quot; checkbox.</li>
+</ul>
+<p><img src="Documentation/Images/EnablePatrol.jpg" alt="Enable Patrol"></p>
+<ul>
+<li><p>The &quot;Patrol Only Objects&quot; list contains stage objects that you want to load only in Patrol Mode. Add any object from the scene to the list, and they will be disabled in other modes.</p>
+</li>
+<li><p>To add a new Patrol Objective, click the <img src="Documentation/Images/AddButton.jpg" alt="Add Button"> button.</p>
+</li>
+<li><p>To Edit a Patrol Objective, click the <img src="Documentation/Images/EditPointsButton.jpg" alt="Edit Points Button"> button. To enter the Points Edit Mode, left-click anywhere on the map to place a marker for the Patrol Point. To remove a marker, right-click on it. The white line wrapping the markers represents the main area used for computation.</p>
+</li>
+</ul>
+<p><img src="Documentation/Images/PlacePatrolObjective.gif" alt="Place Patrol Objective"></p>
+</li>
+<li><p><strong>Sabotage Setup:</strong> </p>
+<ul>
+<li>Expand the Sabotage Settings.</li>
+<li>Click the &quot;Enable Sabotage&quot; checkbox.</li>
+<li>You can add Sabotage Points by clicking the <img src="Documentation/Images/AddButton.jpg" alt="Add Button"> button.</li>
+<li>After adding, you can position the points by clicking the <img src="Documentation/Images/MoveButton.jpg" alt="Move Button"> and clicking the area of the scene where you want to place it.</li>
+</ul>
+<p><img src="Documentation/Images/SabotageSetup.gif" alt="Sabotage Setup"></p>
+</li>
+<li><p><strong>Export Setup:</strong> </p>
+<ul>
+<li>Expand the Export Settings.</li>
+</ul>
+<p><img src="Documentation/Images/ExportSettings.jpg" alt="Export Settings"></p>
+<ul>
+<li><strong>Build Target:</strong> This is the target platform that asset bundles will be built for. Please select only Android or Windows for now.</li>
+<li><strong>Info:</strong> These settings control how the map is set up.<ul>
+<li><strong>Name:</strong> The name of the map.</li>
+<li><strong>Description:</strong> Short description of the map.</li>
+<li><strong>Vehicles:</strong> Disabling this will force vehicles to be off in the map.</li>
+<li><strong>Traps:</strong> Ignore this for now.</li>
+<li><strong>Supply Crate:</strong> Controls if the supply pilot should come and drop the supply crate.</li>
+<li><strong>Size:</strong> Map size (0: small, 1: medium, 2: large).</li>
+<li><strong>Icon:</strong> This is the icon of the map. It is very important to display the loading screen.</li>
+<li><strong>Map Icon:</strong> Not necessary.</li>
+<li><strong>Has Safe Zone:</strong> This option is very useful for modes like Sabotage on large maps.</li>
+<li><strong>Show in MP:</strong> This will make the map show in custom MP modes.</li>
+<li><strong>Show in BR:</strong> This will make the map show in custom BR modes.</li>
+</ul>
+</li>
+<li><strong>Platforms:</strong> Ignore this for now.</li>
+<li><strong>Compress Mesh UVs:</strong> This option will cause the mesh UVs to be compressed and reduce map disk size.</li>
+<li><strong>Compress Mesh Vertices:</strong> This will compress the mesh geometry and reduce disk space.</li>
+<li><strong>Convert Shaders:</strong> This is very important if you plan to atlas your map with the Pack Textures option. This will convert most of the map&#39;s shaders to a shader in ZicZac/, which will be good for performance as more unnecessary shaders won&#39;t be loaded into RAM and will also allow changing of Shader Quality.</li>
+<li><strong>Pack Textures:</strong> This will pack the textures of the map into atlases. This will only pack converted materials or materials using shaders under ZicZac/ or GLTF.</li>
+<li><strong>Atlas Size:</strong> The size of each atlas. Please don&#39;t set this higher than 2048 if you are not using a very powerful GPU and lots of RAM.</li>
+<li><strong>Max Texture Size:</strong> This is the max size of each texture in the atlas. Must be a power of 2 (e.g., 256, 512, 1024, 2048, 4096).</li>
+<li><strong>Mesh Compression:</strong> Set this to the desired level. The highest level will make the meshes much smaller but might cause minor visual artifacts.</li>
+<li><strong>Build:</strong> <ul>
+<li>When You Are Done With All Settings And You Are Sure Your Map Is Ready, Click The Build Map Button, This Might Take A While To Build The Map, WHen The Map Is Done Building It Will Open The Folder Containing The Exported Map And You Can Place The Map On Your Device And Install It To Test.</li>
+</ul>
+</li>
+</ul>
+<p>You Can Load An Exported Map In The Editor To See How It WIll Look In-Game.</p>
+<p><strong>Warning</strong> : Loading A Map From The ModMapManager In The Editor Is A Destructive Process And Will Replace Some Of Your Scene Settings So Please Load Mods On Empty Scenes That Dont Contain Any Important Settings.</p>
+</li>
+</ol>
+<h3 id="exportable-components">Exportable Components</h3>
+<p>The exporter can handle the following components, if available in your scene:</p>
+<ol>
+<li><p><strong>Mesh Renderers:</strong></p>
+<ul>
+<li>Exports mesh, sprite, and text renderers.</li>
+</ul>
+</li>
+<li><p><strong>Colliders:</strong></p>
+<ul>
+<li>Includes all colliders set up in the scene.</li>
+</ul>
+</li>
+<li><p><strong>Sounds:</strong></p>
+<ul>
+<li>Exports any sound sources present in the scene.</li>
+</ul>
+</li>
+<li><p><strong>Lights:</strong></p>
+<ul>
+<li>Exports all types of lights.</li>
+</ul>
+</li>
+<li><p><strong>Lightmaps:</strong></p>
+<ul>
+<li>Includes baked lightmaps.</li>
+</ul>
+</li>
+<li><p><strong>Light Probes:</strong></p>
+<ul>
+<li>Exports light probes used in the scene.</li>
+</ul>
+</li>
+<li><p><strong>NavMesh Surface:</strong></p>
+<ul>
+<li>Exports the local NavMesh surface. (Found in the <code>ModMapManager</code> prefab)</li>
+</ul>
+</li>
+<li><p><strong>Post Processing Volume:</strong></p>
+<ul>
+<li>Must be set up on the Main Camera to be exported.</li>
+</ul>
+</li>
+<li><p><strong>Render Settings:</strong></p>
+<ul>
+<li>Exports the render settings of the scene.</li>
+</ul>
+</li>
+<li><p><strong>Shaders:</strong></p>
+<ul>
+<li>Exports all shaders used in the scene.</li>
+</ul>
+</li>
+<li><p><strong>Terrains:</strong></p>
+<ul>
+<li>Exports terrain components.</li>
+</ul>
+</li>
+<li><p><strong>Materials:</strong></p>
+<ul>
+<li>Includes all materials used in the scene.</li>
+</ul>
+</li>
+<li><p><strong>LOD Groups:</strong></p>
+<ul>
+<li>Exports LOD (Level of Detail) groups.</li>
+</ul>
+</li>
+<li><p><strong>Reflection Probes:</strong></p>
+<ul>
+<li>Exports reflection probes.</li>
+</ul>
+</li>
+<li><p><strong>NavMesh Links:</strong></p>
+<ul>
+<li>Exports any NavMesh links present in the scene.</li>
+</ul>
+</li>
+<li><p><strong>Other Components:</strong></p>
+<ul>
+<li>Exports additional components, such as post-processing volumes, that might be specific to your scene.</li>
+</ul>
+</li>
+</ol>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Ensure all required components are set up and correctly configured before exporting the map.</li>
+<li>The exporter currently supports only the local NavMesh surface. Other NavMesh surfaces will be supported in future updates.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+<p>Copyright (c) 2024 ZicZac</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
