@@ -8,6 +8,7 @@ Properties {
     _Cube ("Reflection Cubemap", Cube) = "_Skybox" { }
      [noscaleoffset]_BumpMap ("Normalmap", 2D) = "bump" {}
     _BumpMap2 ("Normalmap2", 2D) = "bump" {}
+    _ScrollSpeed ("Scroll Speed", Range(-10,10)) = 1 // The speed at which the bump maps scroll
 }
 
 SubShader {
@@ -24,19 +25,29 @@ sampler2D _BumpMap;
 samplerCUBE _Cube;
 fixed4 _Color;
 fixed4 _ReflectColor;
+fixed _ScrollSpeed; // Scrolling speed for the bump maps
 
 struct Input {
-    fixed2 uv_MainTex;
-    fixed2 uv_BumpMap;
-    fixed2 uv2_BumpMap2;
+    float2 uv_MainTex;
+    float2 uv2_BumpMap2;
     fixed3 worldRefl;
     INTERNAL_DATA
 };
 
 void surf (Input IN, inout SurfaceOutput o) {
+    // Scroll the UV coordinates of the bump maps using time and scroll speed
+    float2 scrolledUV1 = IN.uv_MainTex + (_ScrollSpeed * _Time.y);
+    float2 scrolledUV2 = IN.uv2_BumpMap2 - (_ScrollSpeed * _Time.y);
+
+    // Albedo comes from a texture tinted by color
     fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-    o.Albedo = c.rgb*0.5;
-    o.Normal = UnpackNormal((tex2D(_BumpMap, IN.uv_MainTex)+tex2D(_BumpMap2, IN.uv2_BumpMap2)));
+    o.Albedo = c.rgb;
+
+    // Combine and unpack the scrolled normal maps
+    half3 normal1 = UnpackNormal(tex2D(_BumpMap, scrolledUV1))*0.5;
+    half3 normal2 = UnpackNormal(tex2D(_BumpMap2, scrolledUV2))*0.5;
+    o.Normal = normalize(normal1 + normal2);
+
     fixed3 worldRefl = WorldReflectionVector (IN, o.Normal);
     fixed4 reflcol = texCUBE (_Cube, worldRefl);
     //reflcol *= c.a;

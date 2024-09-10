@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -62,6 +62,9 @@ MonoBehaviour:
   thicknessModifier:
     overrideState: 1
     value: 1
+  zBias:
+    overrideState: 0
+    value: 0.0001
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -83,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -144,11 +147,11 @@ MonoBehaviour:
     overrideState: 0
     value: 1.12
   ldrLut:
-    overrideState: 1
-    value: {fileID: 2800000, guid: 71d47d5c81f3f8c488fc3fee3b058a88, type: 3}
+    overrideState: 0
+    value: {fileID: 2800000, guid: fc18adf7e885e6246a3679db09b14e50, type: 3}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 1
+    overrideState: 0
     value: 1
   temperature:
     overrideState: 1

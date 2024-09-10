@@ -27,18 +27,17 @@ Shader "ZicZac/Water/High" {
 
         struct Input {
             float2 uv_MainTex; // UV coordinates for the main texture
-            float2 uv_BumpMap; // UV coordinates for the first normal map
             float2 uv2_BumpMap2; // UV coordinates for the second normal map
         };
 
         fixed _Metallic; // Metallic property from material
         fixed _Glossiness; // Glossiness property from material
         fixed _ScrollSpeed; // Scrolling speed for the bump maps
-        float4 _Color; // Base color of the material
+        half4 _Color; // Base color of the material
 
         void surf (Input IN, inout SurfaceOutputStandard o) {
             // Scroll the UV coordinates of the bump maps using time and scroll speed
-            float2 scrolledUV1 = IN.uv_BumpMap + (_ScrollSpeed * _Time.y);
+            float2 scrolledUV1 = IN.uv_MainTex + (_ScrollSpeed * _Time.y);
             float2 scrolledUV2 = IN.uv2_BumpMap2 - (_ScrollSpeed * _Time.y);
 
             // Albedo comes from a texture tinted by color
@@ -46,8 +45,8 @@ Shader "ZicZac/Water/High" {
             o.Albedo = c.rgb;
 
             // Combine and unpack the scrolled normal maps
-            float3 normal1 = UnpackNormal(tex2D(_BumpMap, scrolledUV1))*0.5;
-            float3 normal2 = UnpackNormal(tex2D(_BumpMap2, scrolledUV2))*0.5;
+            half3 normal1 = UnpackNormal(tex2D(_BumpMap, scrolledUV1))*0.5;
+            half3 normal2 = UnpackNormal(tex2D(_BumpMap2, scrolledUV2))*0.5;
             o.Normal = normalize(normal1 + normal2);
 
             // Set metallic and smoothness values

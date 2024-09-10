@@ -55,7 +55,7 @@ CGPROGRAM
         
 
         struct Input {
-            fixed2 uv_Splat;
+            float2 uv_Splat;
         };
 
         void surf (Input IN, inout SurfaceOutput o) {
@@ -77,7 +77,7 @@ CGPROGRAM
         
         struct v2f_surf {
   fixed4 pos : SV_POSITION;
-  half2 pack0 : TEXCOORD0;
+  float2 pack0 : TEXCOORD0;
   #ifndef LIGHTMAP_ON
   fixed3 normal : TEXCOORD1;
   #endif
@@ -91,7 +91,7 @@ CGPROGRAM
   UNITY_FOG_COORDS(5)
   UNITY_VERTEX_OUTPUT_STEREO
 };
-half4 _Splat_ST;
+fixed4 _Splat_ST;
 v2f_surf vert_surf (appdata_full v)
 {
     v2f_surf o;

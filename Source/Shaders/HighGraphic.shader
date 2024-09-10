@@ -16,11 +16,12 @@
         LOD 512
 
         CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard interpolateview approxview nolppv nometa nodynlightmap exclude_path:deferred exclude_path:prepass
+        #pragma surface surf Standard interpolateview approxview nolppv nometa exclude_path:deferred exclude_path:prepass fullforwardshadows
 
-        // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
+
+        // Enable instancing support
+        #pragma instancing_options assumeuniformscaling
 
         sampler2D _MainTex;
         sampler2D _PBR;
@@ -31,34 +32,27 @@
             fixed2 uv_MainTex;
         };
 
-        half _Metallic;
-        half _Glossiness;
-        fixed4 _Color;
+        //fixed _Metallic;
+        //fixed _Glossiness;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
         UNITY_INSTANCING_BUFFER_START(Props)
-        //UNITY_DEFINE_INSTANCED_PROP(fixed4, _Color)
-            // put more per-instance properties here
+        UNITY_DEFINE_INSTANCED_PROP(fixed4, _Color)
+        UNITY_DEFINE_INSTANCED_PROP(fixed, _Metallic)
+        UNITY_DEFINE_INSTANCED_PROP(fixed, _Glossiness)
         UNITY_INSTANCING_BUFFER_END(Props)
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            fixed4 pbr = tex2D (_PBR, IN.uv_MainTex);
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+            fixed4 pbr = tex2D(_PBR, IN.uv_MainTex);
             o.Albedo = c.rgb;
             o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
-            // Metallic and smoothness come from slider variables
             o.Occlusion = pbr.r;
-            o.Metallic = pbr.g*_Metallic;
-            o.Emission = c.rgb*pbr.b;
-            o.Smoothness =pbr.a*_Glossiness;
+            o.Metallic = pbr.g * UNITY_ACCESS_INSTANCED_PROP(Props, _Metallic);
+            o.Emission = c.rgb * pbr.b;
+            o.Smoothness = pbr.a * UNITY_ACCESS_INSTANCED_PROP(Props, _Glossiness);
         }
         ENDCG
     }
-    FallBack "Diffuse"
+    // FallBack "Diffuse"
 }
-
-

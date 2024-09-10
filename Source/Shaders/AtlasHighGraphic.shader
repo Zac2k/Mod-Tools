@@ -9,47 +9,44 @@
     }
     SubShader
     {
-        Tags {"RenderType"="Opaque" }
-
+        Tags {"RenderType"="Opaque"}
         LOD 512
 
         CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
+        // Physically based Standard lighting model, with shadows enabled on all light types
         #pragma surface surf Standard interpolateview approxview nolppv nometa nodynlightmap exclude_path:deferred exclude_path:prepass
 
-        // Use shader model 3.0 target, to get nicer looking lighting
+        // Use shader model 3.0 target for better lighting
         #pragma target 3.0
 
         sampler2D _MainTex;
         sampler2D _PBR;
         sampler2D _BumpMap;
 
+        half4 _Offset;
         struct Input
         {
-            fixed2 uv_MainTex;
+            half2 uv_MainTex;
         };
 
-        fixed4 _Offset;
-
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
+        // Instancing support
+        #pragma instancing_options assumeuniformscaling
         UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
+            // Additional per-instance properties
         UNITY_INSTANCING_BUFFER_END(Props)
-
-        // min is a 2d vector that limits the mip in x and y axes. (1,1) will be the lowest resolution mip, (0,0) is no limit and will use highest res mip
-
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            
-            fixed2 uv=frac(IN.uv_MainTex);
-            uv%=_Offset.zw;
-            uv+=_Offset.xy;
+            // Adjust UV coordinates with the atlas offset
+            half2 uv = frac(IN.uv_MainTex);
+            uv = fmod(uv, _Offset.zw);
+            uv += _Offset.xy;
 
-            fixed4 c = tex2D (_MainTex, uv);
-            fixed4 pbr = tex2D (_PBR, uv);
+            // Sample textures with precision adjustments
+            fixed4 c = tex2D(_MainTex, uv);
+            fixed4 pbr = tex2D(_PBR, uv);
+            
+            // Assign the texture values to the surface output
             o.Albedo = c.rgb;
             o.Normal = UnpackNormal(tex2D(_BumpMap, uv));
             o.Occlusion = pbr.r;
@@ -60,5 +57,3 @@
     }
     FallBack "Diffuse"
 }
-
-

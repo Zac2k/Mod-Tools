@@ -1659,7 +1659,12 @@ public static class CWModUtility
     {
         try
         {
-            if (CheckIfPngOrJpg(data)) return Tex.LoadImage(data, markNonReadable);
+            if (CheckIfPngOrJpg(data)) 
+            return Tex.LoadImage(data, markNonReadable);
+            else 
+            if (CheckIfTGA(data)){
+            return Tex.LoadTGA(data, markNonReadable);
+            }
             else
             {
                 return Tex.LoadImage(ImgToPng(data), markNonReadable);
@@ -1680,6 +1685,38 @@ public static class CWModUtility
              (data[0] == 0xFF && data[1] == 0xD8));   // JPEG
     }
 
+
+public static bool CheckIfTGA(byte[] data)
+{
+    // TGA files have a minimum header size of 18 bytes
+    if (data == null || data.Length < 18)
+    {
+        return false;
+    }
+
+    // TGA header fields
+    byte idLength = data[0];        // ID length (byte 0)
+    byte colorMapType = data[1];     // Color map type (byte 1)
+    byte imageType = data[2];        // Image type (byte 2)
+
+    // Image type should be one of the valid TGA image types (1, 2, 3, 9, 10, 11)
+    // 1: Color-mapped (indexed) image
+    // 2: Truecolor image
+    // 3: Black and white (grayscale) image
+    // 9: RLE color-mapped image
+    // 10: RLE truecolor image
+    // 11: RLE black and white image
+    if (imageType != 1 && imageType != 2 && imageType != 3 &&
+        imageType != 9 && imageType != 10 && imageType != 11)
+    {
+        return false;
+    }
+
+    // Further checks can be added as needed (e.g., validate other fields, color map specification, etc.)
+
+    // If we passed all checks, assume the data represents a TGA file
+    return true;
+}
 
     public static byte[] ImgToPng(byte[] imageData)
     {
@@ -3334,7 +3371,7 @@ for(int j=0; j<50; j++){
         foreach (KeyValuePair<string, byte[]> KVP in cWMap.ShadersOnStage) File.WriteAllBytes(ShadersPath + KVP.Key + ".bundle", KVP.Value); cWMap.ShadersOnStage = null;
 
         File.WriteAllBytes(AIPath + "NavMesh.bundle", cWMap.NavMeshData); cWMap.NavMeshData = null;
-        File.WriteAllBytes(AIPath + "VNavMesh.bundle", cWMap.VNavMeshData); cWMap.VNavMeshData = null;
+        if(cWMap.VNavMeshData!=null)File.WriteAllBytes(AIPath + "VNavMesh.bundle", cWMap.VNavMeshData); cWMap.VNavMeshData = null;
 
         if (cWMap.PostProcessingProfile != null) File.WriteAllBytes(ShadersPath + "PostFX.bundle", cWMap.PostProcessingProfile); cWMap.PostProcessingProfile = null;
 

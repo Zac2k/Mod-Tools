@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using System.IO;
 using static CWModUtility;
 
 [CustomEditor(typeof(ModMapManager))]
@@ -403,6 +404,7 @@ public class ModMapManagerEditor : Editor
         EditorGUILayout.Space(20);
         if (GUILayout.Button("Build Map")) { MMM.SaveMap(); }
         if (GUILayout.Button("Load Map")) { MMM.LoadMap(); }
+        if (GUILayout.Button("Clear Build Cache")) {if(Directory.Exists("Assets/WorkSpace/")) Directory.Delete("Assets/WorkSpace/",true); AssetDatabase.Refresh();}
 
 
         EditorGUILayout.EndVertical();

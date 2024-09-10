@@ -39,7 +39,7 @@ Shader "ZicZac/HighGraphic/Terrain"
         sampler2D _Tex3;
         sampler2D _Tex4;
 
-        fixed4 _Scales;
+        half4 _Scales;
 
         struct Input
         {
@@ -54,39 +54,30 @@ Shader "ZicZac/HighGraphic/Terrain"
         {
             fixed4 Splat = tex2D(_Splat, IN.uv_Splat);
 
-            fixed4 c1 = tex2D(_Tex1, IN.uv_Splat * _Scales.x);
-            fixed4 c2 = tex2D(_Tex2, IN.uv_Splat * _Scales.y);
-            fixed4 c3 = tex2D(_Tex3, IN.uv_Splat * _Scales.z);
-            fixed4 c4 = tex2D(_Tex4, IN.uv_Splat * _Scales.w);
+            // Sample the albedo textures
+            float2 uv1 = IN.uv_Splat * _Scales.x;
+            float2 uv2 = IN.uv_Splat * _Scales.y;
+            float2 uv3 = IN.uv_Splat * _Scales.z;
+            float2 uv4 = IN.uv_Splat * _Scales.w;
 
-            o.Albedo =
-                (c1.rgb * Splat.r) +
-                (c2.rgb * Splat.g) +
-                (c3.rgb * Splat.b) +
-                (c4.rgb * Splat.a);
+            half4 c1 = tex2D(_Tex1, uv1);
+            half4 c2 = tex2D(_Tex2, uv2);
+            half4 c3 = tex2D(_Tex3, uv3);
+            half4 c4 = tex2D(_Tex4, uv4);
 
-            // Combine normal maps based on splat map
-            float3 n1 = UnpackNormal(tex2D(_BumpMap1, IN.uv_Splat * _Scales.x));
-            float3 n2 = UnpackNormal(tex2D(_BumpMap2, IN.uv_Splat * _Scales.y));
-            float3 n3 = UnpackNormal(tex2D(_BumpMap3, IN.uv_Splat * _Scales.z));
-            float3 n4 = UnpackNormal(tex2D(_BumpMap4, IN.uv_Splat * _Scales.w));
+            // Combine albedo using splat weights
+            o.Albedo = c1.rgb * Splat.r + c2.rgb * Splat.g + c3.rgb * Splat.b + c4.rgb * Splat.a;
 
-            o.Normal = normalize(
-                n1 * Splat.r +
-                n2 * Splat.g +
-                n3 * Splat.b +
-                n4 * Splat.a
-            );
+            // Combine normal maps
+            half3 n1 = UnpackNormal(tex2D(_BumpMap1, uv1));
+            half3 n2 = UnpackNormal(tex2D(_BumpMap2, uv2));
+            half3 n3 = UnpackNormal(tex2D(_BumpMap3, uv3));
+            half3 n4 = UnpackNormal(tex2D(_BumpMap4, uv4));
 
-            // Set glossiness and smoothness based on the alpha channel of textures
-            o.Smoothness = (
-                (c1.a * Splat.r) +
-                (c2.a * Splat.g) +
-                (c3.a * Splat.b) +
-                (c4.a * Splat.a));
+            o.Normal = normalize(n1 * Splat.r + n2 * Splat.g + n3 * Splat.b + n4 * Splat.a);
 
-            // Optionally, you can assign smoothness directly if needed:
-            // o.Smoothness = 1.0;
+            // Set glossiness and smoothness based on alpha channels
+            o.Smoothness = (c1.a * Splat.r + c2.a * Splat.g + c3.a * Splat.b + c4.a * Splat.a);
         }
         ENDCG
     }
