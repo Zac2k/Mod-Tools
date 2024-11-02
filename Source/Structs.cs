@@ -1592,7 +1592,7 @@ public class CWRenderSettings
         }
         else
         {
-            RenderSettings.customReflection = CWMap.Instance.GetTexture(customReflectionChecksum);
+            RenderSettings.customReflection = (Cubemap)CWMap.Instance.GetTexture(customReflectionChecksum);
         }
 
         RenderSettings.ambientProbe = ambientProbe.ToProbe();
@@ -1636,7 +1636,7 @@ public class CWRenderSettings
         RenderSettings.defaultReflectionMode = defaultReflectionMode;
         RenderSettings.reflectionBounces = reflectionBounces;
         RenderSettings.reflectionIntensity = reflectionIntensity;
-        RenderSettings.customReflection = CWMap.Instance.GetTexture(customReflectionChecksum);
+        RenderSettings.customReflection = (Cubemap)CWMap.Instance.GetTexture(customReflectionChecksum);
         RenderSettings.ambientProbe = ambientProbe.ToProbe();
         if (!string.IsNullOrEmpty(sunGOChecksum)) foreach (CWGameObject CWGO in CWMap.Instance.GameObjectsOnStage.Values) if (CWGO.ID.CompareTo(sunGOChecksum) == 0) RenderSettings.sun = CWGO.gameobject.GetComponent<Light>();
         if (!string.IsNullOrEmpty(skyboxMatChecksum)) RenderSettings.skybox = CWMap.Instance.GetMaterial(skyboxMatChecksum);
