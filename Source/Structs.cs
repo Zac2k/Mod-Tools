@@ -1585,7 +1585,7 @@ public class CWRenderSettings
             reflectionProbe.RenderProbe();
 
             // Assign the cubemap to custom reflection
-            RenderSettings.customReflection = reflectionProbe.customBakedTexture;
+            RenderSettings.customReflection = (Cubemap)reflectionProbe.customBakedTexture;
 
             // Clean up the temporary reflection probe
             MonoBehaviour.Destroy(probeGO);
