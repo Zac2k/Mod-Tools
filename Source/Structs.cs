@@ -1540,7 +1540,14 @@ public class CWRenderSettings
         defaultReflectionMode = RenderSettings.defaultReflectionMode;
         reflectionBounces = RenderSettings.reflectionBounces;
         reflectionIntensity = RenderSettings.reflectionIntensity;
-        if (RenderSettings.customReflection && RenderSettings.defaultReflectionMode == DefaultReflectionMode.Custom) customReflectionChecksum = GetTextureChecksum(RenderSettings.customReflection);
+        if (RenderSettings.customReflection != null && RenderSettings.customReflection is Cubemap && RenderSettings.defaultReflectionMode == DefaultReflectionMode.Custom)
+        {
+            customReflectionChecksum = GetTextureChecksum(RenderSettings.customReflection);
+        }
+        else
+        {
+            Debug.LogWarning("RenderSettings.customReflection is not assigned or is not a cubemap.");
+        }
         ambientProbe = new CWSphericalHarmonicsL2(RenderSettings.ambientProbe);
         if (RenderSettings.sun) sunGOChecksum = GetTransformChecksum(RenderSettings.sun.transform);
         if (RenderSettings.skybox && RenderSettings.ambientMode == AmbientMode.Skybox) skyboxMatChecksum = GetMaterialChecksum(RenderSettings.skybox);
